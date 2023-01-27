@@ -22,11 +22,6 @@ fun Application.server(kafka: KStreams = KafkaStreams) {
 
     install(MicrometerMetrics) { registry = prometheus }
 
-    kafka.connect(
-        config = config.kafka,
-        registry = prometheus,
-        topology = topology()
-    )
 
     routing {
         actuators(prometheus, kafka)
