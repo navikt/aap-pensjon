@@ -1,9 +1,8 @@
 package pensjon.kafka
 
-import org.apache.kafka.streams.StreamsBuilder
-import org.apache.kafka.streams.Topology
+import no.nav.aap.kafka.streams.v2.Topology
+import no.nav.aap.kafka.streams.v2.topology
 
-fun topology(): Topology{
-    val streams = StreamsBuilder()
-    return streams.build()
+internal fun topology(): Topology = topology{
+
 }

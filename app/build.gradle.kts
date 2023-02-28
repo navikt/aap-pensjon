@@ -1,23 +1,21 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.8.0"
-    id("io.ktor.plugin") version "2.2.2"
-    application
+    kotlin("jvm") version "1.8.10"
+    id("io.ktor.plugin") version "2.2.3"
 }
 
 application {
     mainClass.set("pensjon.AppKt")
 }
 
-val aapLibsVersion = "3.5.39"
-val ktorVersion = "2.2.2"
+val aapLibsVersion = "3.6.8"
+val ktorVersion = "2.2.3"
 
 dependencies {
     implementation("com.github.navikt.aap-libs:ktor-auth-azuread:$aapLibsVersion")
-    implementation("com.github.navikt.aap-libs:kafka:$aapLibsVersion")
+    implementation("com.github.navikt.aap-libs:kafka-2:$aapLibsVersion")
     implementation("com.github.navikt.aap-libs:ktor-utils:$aapLibsVersion")
-    implementation("com.github.navikt.aap-libs:kafka-avroserde:$aapLibsVersion")
 
     implementation("io.ktor:ktor-client-cio:$ktorVersion")
     implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
@@ -37,21 +35,15 @@ dependencies {
     runtimeOnly("net.logstash.logback:logstash-logback-encoder:7.2")
 
     testImplementation(kotlin("test"))
-    testImplementation("com.github.navikt.aap-libs:kafka-test:$aapLibsVersion")
+    testImplementation("com.github.navikt.aap-libs:kafka-test-2:$aapLibsVersion")
     testImplementation("io.ktor:ktor-server-test-host:$ktorVersion")
 }
 
 repositories {
     mavenCentral()
     maven("https://github-package-registry-mirror.gc.nav.no/cached/maven-release")
-    maven("https://packages.confluent.io/maven/")
 }
 
-configurations.all {
-    resolutionStrategy {
-        force("org.apache.kafka:kafka-clients:3.3.1")
-    }
-}
 
 tasks {
     withType<KotlinCompile> {

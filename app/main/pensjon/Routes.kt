@@ -5,7 +5,7 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.micrometer.prometheus.PrometheusMeterRegistry
-import no.nav.aap.kafka.streams.KStreams
+import no.nav.aap.kafka.streams.v2.KStreams
 
 fun Routing.actuators(prometheus: PrometheusMeterRegistry, kafka: KStreams) {
     route("/actuator") {

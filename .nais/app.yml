@@ -5,8 +5,7 @@ metadata:
   namespace: aap
   labels:
     team: aap
-  annotations:
-    github.url: "https://github.com/navikt/aap-pensjon"
+    sub: vedtak
 spec:
   image: {{image}}
   replicas:
