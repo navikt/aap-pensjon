@@ -16,6 +16,8 @@ spec:
   azure:
     application:
       enabled: true
+  ingresses:
+    - https://aap-pensjon.intern.dev.nav.no
   accessPolicy:
     outbound:
       rules:

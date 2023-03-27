@@ -17,13 +17,12 @@ import no.nav.aap.ktor.client.AzureAdTokenProvider
 import no.nav.aap.ktor.client.AzureConfig
 import org.slf4j.LoggerFactory
 import java.time.LocalDate
-import java.util.*
 
 private val secureLog = LoggerFactory.getLogger("secureLog")
 
 class PesysClient(azureConfig: AzureConfig) {
 
-    val tokenProvider = AzureAdTokenProvider(
+    private val tokenProvider = AzureAdTokenProvider(
         config = azureConfig,
         scope = "api://dev-gcp.teampensjon.pensjon-pen-q2/.default"
     )
@@ -75,7 +74,7 @@ class PesysClient(azureConfig: AzureConfig) {
     }
 }
 
-enum class vedtakType {
+enum class VedtakType {
     OPPHOR,
     SAMMENSTOT,
     FORGANG,
