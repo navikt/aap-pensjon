@@ -20,7 +20,7 @@ import java.time.LocalDate
 
 private val secureLog = LoggerFactory.getLogger("secureLog")
 
-class PesysClient(azureConfig: AzureConfig) {
+class PesysClient(private val azureConfig: AzureConfig) {
 
     private val tokenProvider = AzureAdTokenProvider(
         config = azureConfig,
@@ -45,11 +45,11 @@ class PesysClient(azureConfig: AzureConfig) {
         }
     }
 
-    suspend fun hentUføreHistorikk(personident: String, virkningstidspunktFom: LocalDate): Uførehistorikk? {
-
+    suspend fun hentUføreHistorikk(personident: String, virkningstidspunktFom: LocalDate, scope: String): Uførehistorikk? {
+        val provider = AzureAdTokenProvider(azureConfig, scope)
         val response = httpClient.get("https://pensjon-pen-q2.dev.adeo.no/pen/springapi/uforeperioder?virkFom=$virkningstidspunktFom") {
             header("fnr", personident)
-            bearerAuth(tokenProvider.getClientCredentialToken())
+            bearerAuth(provider.getClientCredentialToken())
             accept(ContentType.Application.Json)
 
         }
@@ -59,11 +59,12 @@ class PesysClient(azureConfig: AzureConfig) {
 
     }
 
-    suspend fun hentVilkårsinformasjon(personident: String, vedtaksreferanse: String): String? {
+    suspend fun hentVilkårsinformasjon(personident: String, vedtaksreferanse: String, scope: String): String? {
+        val provider = AzureAdTokenProvider(azureConfig, scope)
 
         val response = httpClient.get("https://pensjon-pen-q2.dev.adeo.no/pen/springapi/vedtak/vilkarliste/$vedtaksreferanse") {
             header("fnr", personident)
-            bearerAuth(tokenProvider.getClientCredentialToken())
+            bearerAuth(provider.getClientCredentialToken())
             accept(ContentType.Application.Json)
 
         }

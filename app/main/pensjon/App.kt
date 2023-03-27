@@ -6,6 +6,7 @@ import io.ktor.server.engine.*
 import io.ktor.server.metrics.micrometer.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.*
+import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.util.*
@@ -41,14 +42,16 @@ fun Application.server(kafka: Streams = KafkaStreams()) {
 
         get("/uførehistorikk/{personident}") {
             val personident = call.parameters.getOrFail("personident")
-            pesysClient.hentUføreHistorikk(personident, LocalDate.now().minusYears(10))
+            val scope = call.request.header("scope")!!
+            pesysClient.hentUføreHistorikk(personident, LocalDate.now().minusYears(10), scope)
                 ?.let { call.respond(it) }
                 ?: call.respond("no match")
         }
 
         get("/vilkårsinformasjon/{personident}") {
             val personident = call.parameters.getOrFail("personident")
-            pesysClient.hentVilkårsinformasjon(personident, LocalDate.now().toString())
+            val scope = call.request.header("scope")!!
+            pesysClient.hentVilkårsinformasjon(personident, LocalDate.now().toString(), scope)
                 ?.let { call.respond(it) }
                 ?: call.respond("no match")
         }
