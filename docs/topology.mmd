@@ -1,0 +1,64 @@
+
+%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#07cff6', 'textColor': '#dad9e0', 'lineColor': '#07cff6'}}}%%
+
+graph LR
+
+subgraph Topologi
+    %% TOPICS
+    pen-kravbehandling-v1([pen-kravbehandling-v1])
+	pen-kravbehandling-v1-repartition([pen-kravbehandling-v1-repartition])
+	pen-vedtaksbehandling-v1([pen-vedtaksbehandling-v1])
+	pen-vedtaksbehandling-v1-repartition([pen-vedtaksbehandling-v1-repartition])
+
+    %% JOINS
+    
+
+    %% STATE PROCESSORS
+    
+    
+    %% STATE STORES
+    
+    
+    %% DATABASES
+    
+    
+
+    %% PROCESSOR API JOBS
+    
+    
+    %% JOIN STREAMS
+    
+
+    %% TABLE STREAMS
+    
+
+    %% JOB STREAMS
+    
+    
+    %% BRANCH STREAMS
+    
+
+    %% REPARTITION STREAMS
+    
+    
+    %% BASIC STREAMS
+    pen-kravbehandling-v1 --> pen-kravbehandling-v1-repartition
+	pen-vedtaksbehandling-v1 --> pen-vedtaksbehandling-v1-repartition
+    
+    %% CUSTOM PROCESS STREAMS
+    
+end
+
+%% COLORS
+%% light    #dad9e0
+%% purple   #78369f
+%% pink     #c233b4
+%% dark     #2a204a
+%% blue     #07cff6
+
+%% STYLES
+style pen-kravbehandling-v1 fill:#c233b4, stroke:#2a204a, stroke-width:2px, color:#2a204a
+style pen-kravbehandling-v1-repartition fill:#c233b4, stroke:#2a204a, stroke-width:2px, color:#2a204a
+style pen-vedtaksbehandling-v1 fill:#c233b4, stroke:#2a204a, stroke-width:2px, color:#2a204a
+style pen-vedtaksbehandling-v1-repartition fill:#c233b4, stroke:#2a204a, stroke-width:2px, color:#2a204a
+
