@@ -24,7 +24,7 @@ class PesysClient(private val azureConfig: AzureConfig) {
 
     private val tokenProvider = AzureAdTokenProvider(
         config = azureConfig,
-        scope = "api://dev-gcp.teampensjon.pensjon-pen-q2/.default"
+        scope = "api://dev-fss.teampensjon.pensjon-pen-q2/.default"
     )
 
     private val httpClient = HttpClient(CIO) {

@@ -23,6 +23,7 @@ spec:
       rules:
         - application: pensjon-pen-q2
           namespace: teampensjon
+          cluster: dev-fss
   kafka:
     pool: {{kafka.pool}}
     streams: true
