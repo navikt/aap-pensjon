@@ -42,16 +42,14 @@ fun Application.server(kafka: Streams = KafkaStreams()) {
 
         get("/uførehistorikk/{personident}") {
             val personident = call.parameters.getOrFail("personident")
-            val scope = call.request.header("scope")!!
-            pesysClient.hentUføreHistorikk(personident, LocalDate.now().minusYears(10), scope)
+            pesysClient.hentUføreHistorikk(personident, LocalDate.now().minusYears(10))
                 ?.let { call.respond(it) }
                 ?: call.respond("no match")
         }
 
         get("/vilkårsinformasjon/{personident}") {
             val personident = call.parameters.getOrFail("personident")
-            val scope = call.request.header("scope")!!
-            pesysClient.hentVilkårsinformasjon(personident, LocalDate.now().toString(), scope)
+            pesysClient.hentVilkårsinformasjon(personident, LocalDate.now().toString())
                 ?.let { call.respond(it) }
                 ?: call.respond("no match")
         }
