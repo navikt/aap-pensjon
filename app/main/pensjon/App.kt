@@ -47,9 +47,10 @@ fun Application.server(kafka: Streams = KafkaStreams()) {
                 ?: call.respond("no match")
         }
 
-        get("/vilkårsinformasjon/{personident}") {
+        get("/vilkårsinformasjon/{personident}/{vedtaksreferanse}") {
             val personident = call.parameters.getOrFail("personident")
-            pesysClient.hentVilkårsinformasjon(personident, LocalDate.now().toString())
+            val vedtaksreferanse = call.parameters.getOrFail("vedtaksreferanse")
+            pesysClient.hentVilkårsinformasjon(personident, vedtaksreferanse)
                 ?.let { call.respond(it) }
                 ?: call.respond("no match")
         }

@@ -21,8 +21,8 @@ spec:
   accessPolicy:
     outbound:
       rules:
-        - application: pensjon-pen-q2
-          namespace: teampensjon
+        - application: pensjon-pen-proxy-fss-q2
+          namespace: pensjon-saksbehandling
           cluster: dev-fss
   kafka:
     pool: {{kafka.pool}}
