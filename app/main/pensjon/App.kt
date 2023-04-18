@@ -15,6 +15,7 @@ import io.micrometer.prometheus.PrometheusMeterRegistry
 import no.nav.aap.kafka.streams.v2.KafkaStreams
 import no.nav.aap.kafka.streams.v2.Streams
 import no.nav.aap.ktor.config.loadConfig
+import org.slf4j.LoggerFactory
 import pensjon.kafka.topology
 import java.time.LocalDate
 
@@ -42,6 +43,8 @@ fun Application.server(kafka: Streams = KafkaStreams()) {
 
         get("/uførehistorikk/{personident}") {
             val personident = call.parameters.getOrFail("personident")
+            secureLog.info("calling uførehsitorikk for personident $personident")
+
             pesysClient.hentUføreHistorikk(personident, LocalDate.now().minusYears(10))
                 ?.let { call.respond(it) }
                 ?: call.respond("no match")
@@ -56,3 +59,5 @@ fun Application.server(kafka: Streams = KafkaStreams()) {
         }
     }
 }
+
+private val secureLog = LoggerFactory.getLogger("secureLog")

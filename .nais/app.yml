@@ -20,10 +20,12 @@ spec:
     - https://aap-pensjon.intern.dev.nav.no
   accessPolicy:
     outbound:
-      rules:
-        - application: pensjon-pen-proxy-fss-q2
-          namespace: pensjon-saksbehandling
-          cluster: dev-fss
+      external:
+        - host: pensjon-pen-proxy-fss-q2.dev-fss-pub.nais.io
+#      rules:
+#        - application: pensjon-pen-proxy-fss-q2
+#          namespace: pensjon-saksbehandling
+#          cluster: dev-fss
   kafka:
     pool: {{kafka.pool}}
     streams: true
