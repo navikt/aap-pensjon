@@ -9,7 +9,7 @@ application {
     mainClass.set("pensjon.AppKt")
 }
 
-val aapLibsVersion = "3.7.20"
+val aapLibsVersion = "3.7.22"
 val ktorVersion = "2.3.0"
 
 dependencies {
