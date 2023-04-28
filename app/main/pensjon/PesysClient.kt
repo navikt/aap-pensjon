@@ -95,8 +95,8 @@ data class Uførehistorikk(
 )
 
 data class Periode(
-    val periodeFom: LocalDate,
-    val periodeTom: LocalDate,
+    val periodeFom: LocalDate?,
+    val periodeTom: LocalDate?,
     val uforetidspunkt: LocalDate?,
 //    val skadetidspunkt: LocalDate?,
     val virkFom: LocalDate,
