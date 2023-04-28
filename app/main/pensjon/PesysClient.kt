@@ -53,9 +53,13 @@ class PesysClient(azureConfig: AzureConfig) {
 
         }
         return if (response.status.isSuccess()) {
-            response.body<Uførehistorikk>()
+            try {
+                response.body<Uførehistorikk>()
+            } catch (e: Exception) {
+                secureLog.warn("Failed to parse JSON to `data class Uførehistorikk(...)`:\n${response.bodyAsText()}", e)
+                null
+            }
         } else null
-
     }
 
     suspend fun hentVilkårsinformasjon(personident: String, vedtaksreferanse: String): String? {
