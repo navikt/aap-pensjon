@@ -46,7 +46,7 @@ class PesysClient(azureConfig: AzureConfig) {
     }
 
     suspend fun hentUføreHistorikk(personident: String, virkningstidspunktFom: LocalDate): Uførehistorikk? {
-        val response = httpClient.get("https://pensjon-pen-proxy-fss-q2.dev-fss-pub.nais.io/pen/springapi/aap/uforeperioder?virkFom=$virkningstidspunktFom") {
+        val response = httpClient.get("https://pensjon-pen-proxy-fss-q2.dev-fss-pub.nais.io/aap/uforeperioder?virkFom=$virkningstidspunktFom") {
             header("fnr", personident)
             bearerAuth(tokenProvider.getClientCredentialToken())
             accept(ContentType.Application.Json)
@@ -59,7 +59,8 @@ class PesysClient(azureConfig: AzureConfig) {
     }
 
     suspend fun hentVilkårsinformasjon(personident: String, vedtaksreferanse: String): String? {
-        val response = httpClient.get("https://pensjon-pen-proxy-fss-q2.dev-fss-pub.nais.io/pen/springapi/aap/vedtak/vilkarliste/$vedtaksreferanse") {
+
+        val response = httpClient.get("https://pensjon-pen-proxy-fss-q2.dev-fss-pub.nais.io/aap/vedtak/vilkarliste/$vedtaksreferanse") {
             header("fnr", personident)
             bearerAuth(tokenProvider.getClientCredentialToken())
             accept(ContentType.Application.Json)
